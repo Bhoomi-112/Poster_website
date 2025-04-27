@@ -1,0 +1,173 @@
+/* Import a clean, futuristic font - Oxanium works well for this */
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&display=swap');
+
+body {
+    /* Clean, dark base color */
+    background-color: #121212; /* Very dark grey/almost black */
+    /* Remove texture image for minimalism */
+    background-image: none;
+    color: #e0e0ee; /* Soft white/light grey - Primary Text */
+    font-family: 'Oxanium', sans-serif; /* Use sans-serif fallback */
+    margin: 0;
+    padding: 30px; /* More padding */
+    text-align: center;
+    line-height: 1.6; /* Improve readability */
+}
+
+h1, h2 {
+    color: #bb86fc; /* Subtle futuristic purple/blue accent - Primary Accent */
+    /* Remove text-shadow glow for minimalism */
+    text-shadow: none;
+    margin-bottom: 30px;
+    font-weight: 500; /* Slightly less bold */
+    letter-spacing: 0.5px; /* Reduced letter spacing */
+    text-transform: uppercase; /* Optional: Add uppercase for futuristic feel */
+}
+
+#animation-container {
+    width: 90%;
+    max-width: 1000px;
+    height: 250px;
+    /* Clean dark background */
+    background-color: #1e1e1e; /* Dark grey - Container Background */
+    /* Thin, clean border */
+    border: 1px solid #333333; /* Darker Border */
+    margin: 50px auto; /* More space */
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px; /* Slightly less rounded */
+    /* Subtle, clean box-shadow */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle Shadow */
+}
+
+#timeline {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 50%;
+    height: 2px; /* Thinner line */
+    background-color: #6200ee; /* Primary accent color (slightly different shade than heading, common in palettes) */
+    transform: translateY(-50%);
+    z-index: 1;
+    border-radius: 1px;
+    /* Remove box-shadow glow */
+    box-shadow: none;
+}
+
+#dot {
+    position: absolute;
+    width: 16px; /* Smaller dot */
+    height: 16px;
+    background-color: #03dac6; /* Secondary accent color */
+    border-radius: 50%;
+    top: 50%;
+    left: 5%; /* Initial position, JS controls this */
+    transform: translate(-50%, -50%); /* Center the dot exactly */
+    z-index: 3; /* Above timeline and milestones */
+    border: 2px solid #1e1e1e; /* Border matching container background */
+    /* Subtle box-shadow, no heavy glow */
+    box-shadow: 0 0 5px rgba(3, 218, 198, 0.5); /* Subtle Secondary Accent Shadow */
+    /* Smooth transition */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.milestone {
+    position: absolute;
+    top: calc(50% + 15px); /* Position below the timeline with more space */
+    transform: translateX(-50%); /* Center text under the position */
+    width: 100px; /* Slightly narrower */
+    text-align: center;
+    font-size: 0.8em; /* Slightly smaller font */
+    color: #b0b0b0; /* Medium grey text - Secondary Text */
+    background-color: rgba(30, 30, 30, 0.9); /* Darker semi-transparent background */
+    padding: 6px 4px; /* Reduced padding */
+    border-radius: 4px;
+    border: 1px solid #444444; /* Darker Border */
+    opacity: 0.7; /* Start less faded */
+    z-index: 2; /* Above timeline, below dot */
+    /* Clean transitions */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: none; /* No default shadow */
+}
+
+.milestone strong {
+    color: #e0e0e0; /* Soft white/light grey for the date/title - Primary Text */
+    font-weight: 600; /* Semi-bold */
+}
+
+.milestone.active {
+    opacity: 1; /* Fully visible when active */
+    font-weight: normal; /* Reset font-weight */
+    transform: translateX(-50%) translateY(-5px); /* Slight upward lift effect instead of scale */
+    color: #03dac6; /* Active text color Secondary accent */
+    background-color: #282828; /* Slightly lighter dark background */
+    border-color: #03dac6; /* Secondary accent border */
+    box-shadow: 0 2px 8px rgba(3, 218, 198, 0.3); /* Subtle secondary accent glow */
+}
+
+/* Position individual milestones using their data-position attribute via JS */
+/* (No change needed here, JS handles style.left) */
+
+#limitations-section {
+    width: 90%;
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #1e1e1e; /* Dark background matching container */
+    border-radius: 6px;
+    border: 1px solid #333333; /* Darker Border */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle Shadow */
+}
+
+.limitations-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center items when they don't fill the line */
+    gap: 20px; /* Slightly less gap */
+}
+
+.limitation-item {
+    flex-basis: 220px; /* Slightly wider base */
+    flex-grow: 1;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #444444; /* Slightly lighter border */
+    border-radius: 4px;
+    background-color: #282828; /* Very dark item background */
+    /* Clean transitions, no dramatic effects */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: none; /* No default shadow */
+}
+
+.limitation-item:hover {
+    transform: none; /* Remove lift effect on hover */
+    background-color: #333333; /* Slightly lighter background on hover */
+    border-color: #6200ee; /* Primary accent border on hover */
+    box-shadow: 0 2px 8px rgba(98, 0, 238, 0.3); /* Subtle primary accent glow on hover */
+}
+
+.limitation-item img {
+    max-width: 100%;
+    height: 100px; /* Slightly smaller image */
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 15px auto;
+    background-color: #121212; /* Very dark placeholder bg */
+    border-radius: 4px;
+    border: 1px solid #333333; /* Dark border */
+}
+
+.limitation-item p {
+    font-size: 0.9em;
+    color: #c0c0c0; /* Lighter grey text for limitations */
+    margin: 0;
+    line-height: 1.5;
+}
+
+.limitation-item strong {
+    color: #bb86fc; /* Primary accent color for titles */
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase; /* Optional: Uppercase titles */
+}
